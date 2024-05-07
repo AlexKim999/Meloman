@@ -1,11 +1,8 @@
 package ru.netology
 
-import java.util.*
-
-val scan = Scanner(System.`in`)
 
 fun main() {
-    val purchaseAmount = scan.nextDouble()
+    val purchaseAmount: Double = readln().toDouble()
     val isRegularCustomer = true
 
     var discount = when {
@@ -14,9 +11,12 @@ fun main() {
         purchaseAmount > 10000.0 -> purchaseAmount * 0.05
         else -> 0.0
     }
-        if (isRegularCustomer) {
-            discount += purchaseAmount * 0.01
-        }
-        val totalAmount = purchaseAmount - discount
+    val totalAmountBeforeRegularDiscount = purchaseAmount - discount
+
+    if (isRegularCustomer) {
+        discount = totalAmountBeforeRegularDiscount * 0.01
+    }
+
+    val totalAmount = purchaseAmount - discount
     println("Итоговая стоимость покупки: $totalAmount руб.")
 }
